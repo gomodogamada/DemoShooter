@@ -28,7 +28,7 @@ namespace Section3
         void Start()
         {
             //ham nay se duyet tat ca obj o tren scene roi lay ra spawnManager
-            m_spawnManager = FindObjectOfType<spawnManager>(); 
+            m_spawnManager = FindObjectOfType<spawnManager>();
         }
 
         // Update is called once per frame
@@ -74,7 +74,8 @@ namespace Section3
 
         private void fire()
         {
-            projectileController projectile = Instantiate(m_projectile, firePoint.position, Quaternion.identity, null);
+            //projectileController projectile = Instantiate(m_projectile, firePoint.position, Quaternion.identity, null);
+            projectileController projectile = m_spawnManager.SpawnEnemyProjectile(firePoint.position);
             projectile.Fire();
         }
 

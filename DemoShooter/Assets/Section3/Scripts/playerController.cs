@@ -16,10 +16,12 @@ namespace Section3
         private int currentHp;
 
         private float tempNextFire;
+        private spawnManager m_spawnManager;
         // Start is called before the first frame update
         void Start()
         {
             currentHp = hp; //vi k tao ham Init nen khai bao o day
+            m_spawnManager = FindObjectOfType<spawnManager>();
         }
 
         // Update is called once per frame
@@ -47,7 +49,8 @@ namespace Section3
 
         private void fire()
         {
-           projectileController projectile = Instantiate(m_projectile, firePoint.position, Quaternion.identity, null);
+            //projectileController projectile = Instantiate(m_projectile, firePoint.position, Quaternion.identity, null);
+           projectileController projectile = m_spawnManager.SpawnPlayerProjectile(firePoint.position);
            projectile.Fire();
         }
 

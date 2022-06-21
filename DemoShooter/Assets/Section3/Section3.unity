@@ -436,6 +436,15 @@ MonoBehaviour:
       type: 3}
     in_activeObjs: []
     activeObjs: []
+  m_playerProjectilePool:
+    prefab: {fileID: 342084221467023170, guid: 634596d8710dff543b201fa99d929457, type: 3}
+    in_activeObjs: []
+    activeObjs: []
+  m_enemyProjectilePool:
+    prefab: {fileID: 4659705315255594479, guid: 7115ec669d0b41f4e9dc246ba1fb1179,
+      type: 3}
+    in_activeObjs: []
+    activeObjs: []
   minTotalEnemy: 3
   maxTotalEnemy: 6
   enemySpawnInterval: 0.5
