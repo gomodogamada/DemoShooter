@@ -171,7 +171,7 @@ namespace Section3
         public projectileController SpawnPlayerProjectile(Vector3 position)
         {
             projectileController obj = m_playerProjectilePool.Spawn(position, transform);
-            obj.SetFromPlayer(true);
+            obj.SetFromPlayer(true                                 );
             return obj;
         }
 
