@@ -1,18 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class particleFx : MonoBehaviour
+namespace Section3
 {
-    // Start is called before the first frame update
-    void Start()
+    public class particleFx : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        internal particleFx Spawn(Vector3 position, Transform transform)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

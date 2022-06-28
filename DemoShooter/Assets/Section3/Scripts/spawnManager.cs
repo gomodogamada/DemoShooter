@@ -93,6 +93,47 @@ namespace Section3
         }
     }
 
+    [System.Serializable]
+    public class ParticlePool
+    {
+        public particleFx prefab;
+        public List<particleFx> in_activeObjs;
+        public List<particleFx> activeObjs;
+
+        //ham thay the Instantiate
+        public particleFx Spawn(Vector3 position, Transform parent)
+        {
+            if (in_activeObjs.Count == 0)
+            {
+                particleFx newObj = GameObject.Instantiate(prefab, parent);
+                newObj.transform.position = position;
+                activeObjs.Add(newObj);
+                return newObj;
+            }
+            else //neu list co enemy thi ta sd luon enemy trong list thay vi tao ra 1 object moi
+            {
+                particleFx oldObj = in_activeObjs[0];
+                oldObj.gameObject.SetActive(true);
+                oldObj.transform.SetParent(parent);
+                oldObj.transform.position = position;
+                activeObjs.Add(oldObj);
+                in_activeObjs.RemoveAt(0);
+                return oldObj;
+            }
+        }
+
+        //ham thay the Destroy
+        public void Release(particleFx obj)
+        {
+            if (activeObjs.Contains(obj))
+            {
+                activeObjs.Remove(obj);
+                in_activeObjs.Add(obj);
+                obj.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public class spawnManager : MonoBehaviour
     {
         [SerializeField] private bool m_active; //hoãn cho đến khi 1 đk cụ thể dc kích hoạt
@@ -107,6 +148,9 @@ namespace Section3
         [SerializeField] private enemyPath[] m_path;
 
         [SerializeField] private int m_totalGroups;
+        [SerializeField] private particleFx m_HitFxPool;
+        [SerializeField] private particleFx m_shootingPool;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -178,6 +222,15 @@ namespace Section3
         public void ReleasePlayerProjectile(projectileController projectile) //tham so truyen vao la enemyController
         {
             m_playerProjectilePool.Release(projectile);
+        }
+
+        public particleFx SpawnHitFx(Vector3 position)
+        {
+            return m_HitFxPool.Spawn(position, transform);
+        }
+        public void ReleaseHitFx(particleFx obj)
+        {
+            
         }
     }
 }
